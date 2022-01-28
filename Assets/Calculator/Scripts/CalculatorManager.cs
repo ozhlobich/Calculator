@@ -149,10 +149,12 @@ namespace Calculator
                     _sign = Sign.Equal;
                     //Записываем, что теперь у нас будет результат на экране
                     _inputStates = InputStates.Result;
-                    //Получем из строчки значение в формате int первого введеного параметра
-                    var p1 =  Convert.ToInt32(_firstParam);
-                    //Получем из строчки значение в формате int второго введеного параметра
-                    var p2 = Convert.ToInt32(_secondParam);
+                    //Получаем из строчки значение в формате int первого введеного параметра, перед этим проверяем,
+                    //что строка с числом нашим не пустая используя тернарный оператор
+                    var p1 = string.IsNullOrEmpty(_firstParam) ? 0 : Convert.ToInt32(_firstParam);
+                    //Получаем из строчки значение в формате int второго введеного параметра, перед этим проверяем,
+                    //что строка с числом нашим не пустая используя тернарный оператор
+                    var p2 = string.IsNullOrEmpty(_secondParam) ? 0 : Convert.ToInt32(_secondParam);
                     //Складываем результаты и приводим (конвертируем) к строке
                     var result = (p1 + p2).ToString();
                     //Обновляем наш экран выводя результат на экран
@@ -165,8 +167,8 @@ namespace Calculator
             }
 
             //очищаем наши введенные числа
-            _firstParam = "0";
-            _secondParam = "0";
+            _firstParam = "";
+            _secondParam = "";
         }
     }
 }
